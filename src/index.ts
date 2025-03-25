@@ -23,10 +23,10 @@ app.get("/", async ({ query }) => {
     const responseBody = z.object({
         type: z.string(),
         id: z.string(),
-        photo_list: z.array(z.string()),
-        cover: z.string(),
+        photo_list: z.array(z.string().url()),
+        cover: z.string().url(),
         description: z.string(),
-        link: z.string(),
+        link: z.string().url(),
         author: z.object({
             id: z.string(),
             username: z.string(),
@@ -36,8 +36,6 @@ app.get("/", async ({ query }) => {
     });
 
     const url = query.url as string;
-    // const url = "https://www.tiktok.com/@nopnornnee/photo/7484999896978771208";
-    // const url = "https://www.tiktok.com/@amammjtn/video/7475224162475232513";
 
     if (url.includes("video")) {
         const res = await fetch(url);
