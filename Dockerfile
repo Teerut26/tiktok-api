@@ -5,6 +5,8 @@ WORKDIR /app
 COPY package.json .
 COPY bun.lock .
 
+RUN apt-get update
+RUN apt-get install -y fonts-freefont-ttf chromium
 RUN bun install --production
 
 COPY src src
